@@ -23,7 +23,7 @@ For each function we have five parameters three of them are required and the oth
 The file contains the path of logs file and code for each level
 
 ### Usage & Examples
-- import LogsHub
+import LogsHub
 
 - LogsHub.warning("MESSAGE","NEWS",3,{"key":"value"});
 - LogsHub.error("MESSAGE","NEWS",3);
