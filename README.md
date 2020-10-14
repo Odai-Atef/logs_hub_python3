@@ -15,8 +15,8 @@ We have 4 types of logs:
 ### Function Parameters
 For each function we have five parameters three of them are required and the others are optional
  - message (*)
- - level (*)
  - application (*)
+ - execution_level (*)
  - user_id
  - extra_data
 
@@ -26,10 +26,10 @@ The file contains the path of logs file and code for each level
 ### Usage & Examples
 import LogsHub
 
-- LogsHub.warning("MESSAGE","NEWS",3,{"key":"value"});
-- LogsHub.error("MESSAGE","NEWS",3);
+- LogsHub.warning("message","application_name",300,3,{"key":"value"});
+- LogsHub.error("MESSAGE","NEWS",30);
 - LogsHub.info("MESSAGE","NEWS");
-- LogsHub.critical("MESSAGE","NEWS",None,{"key":"value"});
+- LogsHub.critical("MESSAGE","NEWS",0,None,{"key":"value"});
 
 
 License
