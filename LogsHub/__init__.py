@@ -6,13 +6,14 @@ import requests
 import os 
 dir_path = os.path.abspath(os.curdir)
 config = AutoConfig(search_path=dir_path)
-def _log(msg, application, level,execution_time, user_id=None, extra_data=None):
+def _log(msg, application, level,execution_time, user_id, extra_data):
         now =str( int(datetime.now().timestamp()))
+        environment = 'development' if config("ENVIROMENT") == None or config("ENVIROMENT")=="" else environment
         data={
             "message": msg,
             "level": level,
             "application": application,
-            "environment": config("ENVIROMENT"),
+            "environment": environment,
             "user_id": user_id,
             "execution_time": execution_time,
             "extra_data": extra_data,
@@ -23,19 +24,19 @@ def _log(msg, application, level,execution_time, user_id=None, extra_data=None):
         return data
     
 def _notify(msg):
-        url=""
+        url=config("NOTIFY_URL")
         requests.post(url, data = {"message": json.dumps(msg), "channel": msg['application']})    
 
 
-def warning(msg, application, execution_time, user_id=None, extra_data=None):
+def warning(msg, application,  execution_time=None, user_id=None, extra_data=None):
         _log(msg, application,config('WARNING') ,execution_time, user_id, extra_data)
         
-def info(msg, application, execution_time, user_id=None, extra_data=None):
+def info(msg, application,  execution_time=None, user_id=None, extra_data=None):
         _log(msg, application,config('INFO') ,execution_time, user_id, extra_data) 
 
-def error(msg, application, execution_time, user_id=None, extra_data=None):
+def error(msg, application,  execution_time=None, user_id=None, extra_data=None):
         _log(msg, application,config('ERROR') ,execution_time, user_id, extra_data)      
 
-def critical(msg, application, execution_time, user_id=None, extra_data=None):
+def critical(msg, application,  execution_time=None, user_id=None, extra_data=None):
         _notify(_log(msg, application,config('CRITICAL') ,execution_time, user_id, extra_data))
 
