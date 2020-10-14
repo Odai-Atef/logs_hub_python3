@@ -1,0 +1,1 @@
+from LogsHub.logs_hub import logs_hub
