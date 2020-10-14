@@ -30,15 +30,19 @@ class logs_hub:
         requests.post(url, data = {"message": json.dumps(msg), "channel": msg['application']})
 
 
-    def warning(self,msg, application, execution_time, environment, user_id=None, extra_data=None):
+    def warning(self,msg, application, execution_time=None, environment=None, user_id=None, extra_data=None):
+        environment = 'development' if environment == None else environment
         self._log(msg, application,config('WARNING') ,execution_time, environment, user_id, extra_data)
         
-    def info(self,msg, application, execution_time, environment, user_id=None, extra_data=None):
+    def info(self,msg, application, execution_time=None, environment=None, user_id=None, extra_data=None):
+        environment = 'development' if environment == None else environment
         self._log(msg, application,config('INFO') ,execution_time, environment, user_id, extra_data) 
 
-    def error(self,msg, application, execution_time, environment, user_id=None, extra_data=None):
+    def error(self,msg, application, execution_time=None, environment=None, user_id=None, extra_data=None):
+        environment = 'development' if environment == None else environment
         self._log(msg, application,config('ERROR') ,execution_time, environment, user_id, extra_data)      
 
-    def critical(self,msg, application, execution_time, environment, user_id=None, extra_data=None):
+    def critical(self,msg, application, execution_time=None, environment=None, user_id=None, extra_data=None):
+        environment = 'development' if environment == None else environment
         self._notify(self._log(msg, application,config('CRITICAL') ,execution_time, environment, user_id, extra_data))
 
