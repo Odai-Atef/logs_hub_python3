@@ -20,8 +20,7 @@ For each function we have five parameters three of them are required and the oth
  - user_id
  - extra_data
 
-### env file
-The file contains the path of logs file and code for each level
+
 
 ### Usage & Examples
 import LogsHub
