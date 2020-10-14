@@ -4,7 +4,8 @@ import json
 from decouple import config
 import requests
 
-
+def main():
+    return None
 class logs_hub:
 
 
