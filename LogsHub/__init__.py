@@ -8,7 +8,7 @@ dir_path = os.path.abspath(os.curdir)
 config = AutoConfig(search_path=dir_path)
 def _log(msg, application, level,execution_time, user_id, extra_data):
         now =str( int(datetime.now().timestamp()))
-        environment = 'development' if config("ENVIROMENT") == None or config("ENVIROMENT")=="" else environment
+        environment = 'development' if config("ENVIRONMENT") == None or config("ENVIRONMENT")=="" else config("ENVIRONMENT")
         data={
             "message": msg,
             "level": level,
