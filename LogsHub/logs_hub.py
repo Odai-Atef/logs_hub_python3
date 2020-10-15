@@ -11,7 +11,7 @@ class logs_hub:
 
     def _log(self,msg, application, level,execution_time, user_id, extra_data):
         now =str( int(datetime.now().timestamp()))
-        environment = 'development' if config("ENVIROMENT") == None or config("ENVIROMENT")=="" else config("ENVIROMENT")
+        environment = 'development' if config("ENVIRONMENT") == None or config("ENVIRONMENT")=="" else config("ENVIRONMENT")
         data={
             "message": msg,
             "level": level,
