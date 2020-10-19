@@ -12,6 +12,8 @@ class logs_hub:
     def _log(self,msg, application, level,execution_time, user_id, extra_data):
         now =str( int(datetime.now().timestamp()))
         environment = 'development' if config("ENVIRONMENT") == None or config("ENVIRONMENT")=="" else config("ENVIRONMENT")
+        application = 'unknown' if config("APPLICATION") == None or config("APPLICATION")=="" else config("APPLICATION")
+        
         data={
             "message": msg,
             "level": level,
@@ -31,15 +33,15 @@ class logs_hub:
         requests.post(url, data = {"message": json.dumps(msg), "channel": msg['application']})
 
 
-    def warning(self,msg, application, execution_time=None, user_id=None, extra_data=None):
+    def warning(self,msg, application=None, execution_time=None, user_id=None, extra_data=None):
         self._log(msg, application,config('WARNING') ,execution_time,  user_id, extra_data)
         
-    def info(self,msg, application, execution_time=None, user_id=None, extra_data=None):
+    def info(self,msg, application=None, execution_time=None, user_id=None, extra_data=None):
         self._log(msg, application,config('INFO') ,execution_time,  user_id, extra_data) 
 
-    def error(self,msg, application, execution_time=None, user_id=None, extra_data=None):
+    def error(self,msg, application=None, execution_time=None, user_id=None, extra_data=None):
         self._log(msg, application,config('ERROR') ,execution_time,  user_id, extra_data)      
 
-    def critical(self,msg, application, execution_time=None, user_id=None, extra_data=None):
+    def critical(self,msg, application=None, execution_time=None, user_id=None, extra_data=None):
         self._notify(self._log(msg, application,config('CRITICAL') ,execution_time,  user_id, extra_data))
 
