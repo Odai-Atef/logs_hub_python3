@@ -13,6 +13,7 @@ class logs_hub:
         now =str( int(datetime.now().timestamp()))
         environment = 'development' if config("ENVIRONMENT") == None or config("ENVIRONMENT")=="" else config("ENVIRONMENT")
         application = 'unknown' if config("APPLICATION") == None or config("APPLICATION")=="" else config("APPLICATION")
+        if(application = 'unknown'): print("!!! ERROR: APPLICATION NAME NOT SET IN ENVIRONMENT FILE, LOGSHUB WILL RECORD APPLICATION NAME AS 'unknown'")
         
         data={
             "message": msg,
