@@ -22,6 +22,7 @@ logger.addHandler(con)
 def _log(msg, application, level,execution_time, user_id, extra_data):
         now =str( int(datetime.now().timestamp()))    
         environment = 'development' if config("ENVIRONMENT") == None or config("ENVIRONMENT")=="" else config("ENVIRONMENT")
+        application = 'unknown' if config("APPLICATION") == None or config("APPLICATION")=="" else config("APPLICATION")
 
         data={
             "message": msg,
@@ -50,16 +51,16 @@ def _notify(msg):
         requests.post(url, data = {"message": json.dumps(msg), "channel": msg['application']})    
 
 
-def warning(msg, application,  execution_time=None, user_id=None, extra_data=None):
+def warning(msg, application=None,  execution_time=None, user_id=None, extra_data=None):
         _log(msg, application,config('WARNING') ,execution_time, user_id, extra_data)
         
-def info(msg, application,  execution_time=None, user_id=None, extra_data=None):
+def info(msg, application=None,  execution_time=None, user_id=None, extra_data=None):
         _log(msg, application,config('INFO') ,execution_time, user_id, extra_data) 
 
-def error(msg, application,  execution_time=None, user_id=None, extra_data=None):
+def error(msg, application=None,  execution_time=None, user_id=None, extra_data=None):
         _log(msg, application,config('ERROR') ,execution_time, user_id, extra_data)      
 
-def critical(msg, application,  execution_time=None, user_id=None, extra_data=None):
+def critical(msg, application=None,  execution_time=None, user_id=None, extra_data=None):
         _notify(_log(msg, application,config('CRITICAL') ,execution_time, user_id, extra_data))
 
 
