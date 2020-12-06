@@ -30,7 +30,7 @@ def merge_two_dicts(x, y):
         z.update(y)    # modifies z with y's keys and values & returns None
         return z
 def _log(msg, application, level,execution_time, user_id, extra_data):
-        now =str( int(datetime.now().timestamp()))    
+        now =datetime.now().strftime("%y%m%d%H")
         environment = 'development' if config("ENVIRONMENT") == None or config("ENVIRONMENT")=="" else config("ENVIRONMENT")
         application = 'unknown' if config("APPLICATION") == None or config("APPLICATION")=="" else config("APPLICATION")
 
