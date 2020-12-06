@@ -23,7 +23,7 @@ def set_tags(key,value):
         tags[key]=value
 
 def _log(msg, application, level,execution_time, user_id, extra_data):
-        now =str( int(datetime.now().timestamp()))    
+        now =datetime.now().strftime("%y%m%d%H")
         environment = 'development' if config("ENVIRONMENT") == None or config("ENVIRONMENT")=="" else config("ENVIRONMENT")
         application = 'unknown' if config("APPLICATION") == None or config("APPLICATION")=="" else config("APPLICATION")
 
