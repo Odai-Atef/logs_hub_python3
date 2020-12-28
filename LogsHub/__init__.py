@@ -4,6 +4,7 @@ import json
 from decouple import AutoConfig
 import requests
 import os 
+import time
 
 	
 dir_path = os.path.abspath(os.curdir)
@@ -42,7 +43,7 @@ def _log(msg, application, level,execution_time, user_id, extra_data):
             "user_id": user_id,
             "execution_time": execution_time,
             "extra_data": extra_data,
-            "timestamp": now
+            "timestamp": int(time.time())
         }
         data=merge_two_dicts(original_data, extra_tags)
 
