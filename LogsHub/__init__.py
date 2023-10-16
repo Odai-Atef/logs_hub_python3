@@ -54,7 +54,7 @@ def _log(msg, application, level,execution_time, user_id, extra_data):
         formatter = logging.Formatter('%(message)s')
         handler.setFormatter(formatter)
         logger.addHandler(handler) 
-        logger.warning(json.dumps(data)+"\n")
+        logger.warning(json.dumps(data, ensure_ascii=False)+"\n")  #to fix arabic messing up the encoding in logs, e.g. \u0645\u062c\u0631\u062f
         logger.removeHandler(handler)
 
         return data
